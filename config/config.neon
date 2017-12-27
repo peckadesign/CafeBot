@@ -1,0 +1,25 @@
+services:
+	-
+		class: Pd\CafeBot\Bot
+
+	-
+		class: Pd\CafeBot\Command
+
+	-
+		class: Pd\CafeBot\Notifier
+
+	-
+		class: Pd\CafeBot\Slack
+		arguments:
+			webHookUrl: %webHookUrl%
+
+	-
+		class: Pd\CafeBot\NowDateTimeProvider
+
+	-
+		factory: Pd\CafeBot\RandomCleanUpMessage
+
+	-
+		factory: Pd\CafeBot\CsvCleanerProvider
+		arguments:
+			filePath: %cleanersFilePath%

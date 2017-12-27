@@ -1,0 +1,34 @@
+{
+	"name": "pd/cafe-bot",
+	"description": "Připomínač úklidu kávovaru",
+	"type": "project",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Milan Pála",
+			"email": "milan.pala@peckadesign.cz"
+		}
+	],
+	"minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "Pd\\CafeBot\\": "src"
+        }
+    },
+	"autoload-dev": {
+		"psr-4": {
+			"PdTests\\CafeBot\\": "tests"
+		}
+	},
+	"require": {
+		"php": "7.1.*",
+		"ext-curl": "*",
+		"pd/holidays": "0.1.*",
+		"nette/di": "2.4.*"
+	},
+	"require-dev": {
+		"nette/tester": "^2.0",
+		"pd/coding-standard": "1.10.*",
+		"phpstan/phpstan": "0.9.*"
+	}
+}
