@@ -4,9 +4,6 @@ namespace PdTests\CafeBot\Notifier;
 
 include __DIR__ . '/../../vendor/autoload.php';
 
-/**
- * @skip
- */
 final class EnabledTest extends \Tester\TestCase
 {
 
