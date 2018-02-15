@@ -8,14 +8,17 @@ final class RandomCleanUpMessage implements IMessageProvider
 	/**
 	 * @var array|string[]
 	 */
-	private $messages = [
-		'Dnes jsem hodně špinavý, už se těším až mě %s vyčistí... Kdy přijdeš?',
-		'Jsem tu tak sám, přijde někdo za mnou a vyčístí mě? Co třeba %s?',
-		'Haló, děcka, čistit! Někoho pošlete, co třeba %s? Máš čas?',
-		'Dneska by mě mohl %s pořádně vydrhnout, ať jsem zítra fešák.',
-		'Já mám takový pocit, že na mě dneska %s zapomněl a já jsem tu sám, špinavý, fňuk...',
-		'Minule to bylo nádherné, už se teším až zase přijde %s a pořádně mi protáhne závit. A nešetři mě, ty ďáble!',
-	];
+	private $messages;
+
+
+	/**
+	 * @param array|string[] $messages
+	 */
+	public function __construct(
+		array $messages
+	) {
+		$this->messages = $messages;
+	}
 
 
 	public function getMessage(): string

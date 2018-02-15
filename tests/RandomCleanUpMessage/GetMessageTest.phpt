@@ -7,9 +7,15 @@ include __DIR__ . '/../../vendor/autoload.php';
 final class GetMessageTest extends \Tester\TestCase
 {
 
-	public function testGetMessage(): void
+	public function testManyMessage(): void
 	{
-		$provider = new \Pd\CafeBot\RandomCleanUpMessage();
+		$messages = [
+			'qwertz',
+			'asdfgh',
+			'yxcvb',
+		];
+
+		$provider = new \Pd\CafeBot\RandomCleanUpMessage($messages);
 
 		\Tester\Assert::type('string', $provider->getMessage());
 
@@ -22,6 +28,26 @@ final class GetMessageTest extends \Tester\TestCase
 			}
 		}
 		\Tester\Assert::true($wasChange, 'Náhodný generátor vracel pouze jednu stejnou zprávu: ' . $message);
+	}
+
+
+	public function testOneMessage(): void
+	{
+		$messages = [
+			'qwertz',
+		];
+
+		$provider = new \Pd\CafeBot\RandomCleanUpMessage($messages);
+
+		\Tester\Assert::type('string', $provider->getMessage());
+
+		$message = $provider->getMessage();
+		for ($i = 0; $i < 10; $i++) {
+			if ($message !== $provider->getMessage()) {
+				\Tester\Assert::fail('Nedošlo ke vrácení stále stejné jedné zprávy');
+			}
+		}
+		\Tester\Assert::true(TRUE, 'Náhodný generátor vracel pouze jednu stejnou zprávu: ' . $message);
 	}
 
 }
