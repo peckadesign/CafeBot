@@ -1,12 +1,20 @@
 parameters:
 	messages:
+		- '%s přijď za mnou a vyšisti mě, prosííím :sadeyes: '
 		- 'Dneska čistí třebááá %s. Nezapomeň na mě!'
 		- 'Dnes jsem hodně špinavý, už se těším až mě %s vyčistí... Kdy přijdeš?'
+		- 'Jsem nejvetší dříč ve firmě! Spolu s %s tady makáme a nebýt nás tak by to tady nefungovalo. %s přijď zamakat!'
+		- '%s ty dneska čistíš? Fakt? Moment, podívám se :eyes:, no jo, tak pojď.'
 		- 'Jsem tu tak sám, přijde někdo za mnou a vyčístí mě? Co třeba %s?'
 		- 'Haló, děcka, čistit! Někoho pošlete, co třeba %s? Máš čas?'
+		- 'Prosímtě, %s co to jako minule mělo znamenat? :flushed: To bylo čištění? Tak dneska ale opravdu, žádné flákání jako minule'
+		- 'Něco na mě asi leze, teče ze mě voda a trošku drnčím při dělání kávy. %s až mě budeš čistit tak mě pěkně pohlaď. Jestli chceš můžeš i zazpívat.'
+		- 'Nechte mě být, dneska mám depresi. Stejně mě nikdo nemá rád, celý den se tu jen dřu, dělám kávu a co z toho mám, nic!'
 		- 'Tak co je? Kde je %s, je vůbec v práci? Jestli nepřijdeš a nevyčistíš mě, tak to na tebe řeknu! '
 		- 'Dneska by mě mohl %s pořádně vydrhnout, ať jsem zítra fešák.'
+		- 'Dnes je den kdy se může stát cokoliv takže může přijít kdo má zrovna čas, je mě to jedno, hlavně mě vyčistěte. A ne jak včera, to bylo hodne odfláknuté.'
 		- 'Já mám takový pocit, že na mě dneska %s zapomněl a já jsem tu sám, špinavý, fňuk...'
+		- '%s minule to bylo divoky že? :heart_eyes: :shower: :giggle: Pamatuji si tak prvních 5 minut, pak už to byl fičák. Pojď, zase zapaříme :champagne:'
 		- 'Minule to bylo nádherné, už se teším až zase přijde %s a pořádně mi protáhne závit. A nešetři mě, ty ďáble!'
 
 	fridayMessages:
