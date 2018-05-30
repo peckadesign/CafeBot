@@ -36,7 +36,7 @@ final class CsvCleanerProvider implements ICleanerProvider
 		$cleaner = NULL;
 
 		foreach ($plans as $plan) {
-			list($cleanerCandidate, $from, $to) = explode(",", $plan);
+			list($cleanerCandidate, $slackId, $from, $to) = explode(",", $plan);
 
 			$from = \Nette\Utils\DateTime::createFromFormat("j.n.Y", $from);
 			$to = \Nette\Utils\DateTime::createFromFormat("j.n.Y", $to);
@@ -49,7 +49,7 @@ final class CsvCleanerProvider implements ICleanerProvider
 			}
 
 			if ($from && $to && $from->format('U') <= $today->format('U') && $to->format('U') >= $today->format('U')) {
-				$cleaner = $cleanerCandidate;
+				$cleaner = $slackId ? '@' . $slackId : $cleanerCandidate;
 			}
 		}
 
