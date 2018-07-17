@@ -23,7 +23,7 @@ final class GetCleanerTest extends \Tester\TestCase
 	}
 
 
-	public function testInRange(): void
+	public function testInRangeUserName(): void
 	{
 		$dateTimeProvider = new class implements \Pd\CafeBot\IDateTimeProvider {
 
@@ -36,6 +36,22 @@ final class GetCleanerTest extends \Tester\TestCase
 
 		$provider = new \Pd\CafeBot\CsvCleanerProvider(__DIR__ . '/data.csv', $dateTimeProvider);
 		\Tester\Assert::equal('Čistič B', $provider->getCleaner());
+	}
+
+
+	public function testInRangeSlackId(): void
+	{
+		$dateTimeProvider = new class implements \Pd\CafeBot\IDateTimeProvider {
+
+			public function getDateTime(): \DateTimeImmutable
+			{
+				return new \DateTimeImmutable('2017-09-26');
+			}
+
+		};
+
+		$provider = new \Pd\CafeBot\CsvCleanerProvider(__DIR__ . '/data.csv', $dateTimeProvider);
+		\Tester\Assert::equal('@CCCC', $provider->getCleaner());
 	}
 
 }
