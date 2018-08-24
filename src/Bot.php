@@ -43,7 +43,7 @@ final class Bot
 		}
 
 		if (((int) $this->dateTimeProvider->getDateTime()->format('N')) === 5 && ($nextCleaner = $this->cleanerProvider->getNextCleaner())) {
-			$message .= \sprintf('. A příště uklízí %s', $this->createLinkFromCleaner($nextCleaner));
+			$message .= \sprintf(' A příště uklízí %s', $this->createLinkFromCleaner($nextCleaner));
 		}
 
 		return $message;
