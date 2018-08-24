@@ -144,7 +144,7 @@ final class SpeechTest extends \Tester\TestCase
 
 			public function getMessage(): string
 			{
-				return 'Vyčistit %s';
+				return 'Vyčistit %s.';
 			}
 		};
 
