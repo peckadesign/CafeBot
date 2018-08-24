@@ -7,4 +7,6 @@ interface ICleanerProvider
 
 	public function getCleaner(): ?string;
 
+	public function getNextCleaner(): ?string;
+
 }
