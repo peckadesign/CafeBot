@@ -27,33 +27,55 @@ final class CsvCleanerProvider implements ICleanerProvider
 
 	public function getCleaner(): ?string
 	{
+		$today = $this->dateTimeProvider->getDateTime();
+
+		foreach ($this->parseCleaners() as $cleaner) {
+			if ($cleaner->isAvailableInDay($today)) {
+				return $cleaner->getSlackId() ? '@' . $cleaner->getSlackId() : $cleaner->getName();
+			}
+		}
+
+		return NULL;
+	}
+
+
+	public function getNextCleaner(): ?string
+	{
+		$today = $this->dateTimeProvider->getDateTime();
+		$today = $today->modify('next monday');
+
+		foreach ($this->parseCleaners() as $cleaner) {
+			if ($cleaner->isAvailableInDay($today)) {
+				return $cleaner->getSlackId() ? '@' . $cleaner->getSlackId() : $cleaner->getName();
+			}
+		}
+
+		return NULL;
+	}
+
+
+	/**
+	 * @return iterable|Cleaner[]
+	 */
+	private function parseCleaners(): iterable
+	{
 		$data = file_get_contents($this->filePath);
 		$plans = preg_split('~[\r\n]+~', $data);
 		array_shift($plans);
-
-		$today = $this->dateTimeProvider->getDateTime();
 
 		$cleaner = NULL;
 
 		foreach ($plans as $plan) {
 			list($cleanerCandidate, $slackId, $from, $to) = explode(",", $plan);
 
-			$from = \Nette\Utils\DateTime::createFromFormat("j.n.Y", $from);
-			$to = \Nette\Utils\DateTime::createFromFormat("j.n.Y", $to);
-
-			if ( ! $from) {
-				continue;
-			}
-			if ( ! $to) {
+			try {
+				$cleaner = new Cleaner($cleanerCandidate, $slackId, $from, $to);
+			} catch (\RuntimeException $e) {
 				continue;
 			}
 
-			if ($from && $to && $from->format('U') <= $today->format('U') && $to->format('U') >= $today->format('U')) {
-				$cleaner = $slackId ? '@' . $slackId : $cleanerCandidate;
-			}
+			yield $cleaner;
 		}
-
-		return $cleaner;
 	}
 
 }
