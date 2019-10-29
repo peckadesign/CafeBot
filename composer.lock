@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9a0794480cb9ffd122ec173a793b5ee6",
+    "content-hash": "c4c8b7096b72416e70dbff9af4f14b9c",
     "packages": [
         {
             "name": "nette/di",
@@ -272,16 +272,16 @@
         },
         {
             "name": "pd/holidays",
-            "version": "v0.1.0",
+            "version": "v1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/peckadesign/Holidays.git",
-                "reference": "2bb2d925111b422df65f56a25bdab2c067b0cdb0"
+                "reference": "39058e354a9400653ca18620e0bca9b1f8b07629"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/peckadesign/Holidays/zipball/2bb2d925111b422df65f56a25bdab2c067b0cdb0",
-                "reference": "2bb2d925111b422df65f56a25bdab2c067b0cdb0",
+                "url": "https://api.github.com/repos/peckadesign/Holidays/zipball/39058e354a9400653ca18620e0bca9b1f8b07629",
+                "reference": "39058e354a9400653ca18620e0bca9b1f8b07629",
                 "shasum": ""
             },
             "require": {
@@ -309,7 +309,7 @@
                 }
             ],
             "description": "Přehled svátků pro různé lokalizace",
-            "time": "2017-08-01T07:31:28+00:00"
+            "time": "2019-10-24T13:52:17+00:00"
         }
     ],
     "packages-dev": [

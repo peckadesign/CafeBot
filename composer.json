@@ -23,7 +23,7 @@
 	"require": {
 		"php": "7.1.*",
 		"ext-curl": "*",
-		"pd/holidays": "0.1.*",
+		"pd/holidays": "1.0.*",
 		"nette/di": "2.4.*"
 	},
 	"require-dev": {
