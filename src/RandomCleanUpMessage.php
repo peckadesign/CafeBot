@@ -26,7 +26,7 @@ final class RandomCleanUpMessage implements IMessageProvider
 		try {
 			$messageIndex = random_int(0, count($this->messages) - 1);
 		} catch (\Exception $e) {
-			$messageIndex = substr((string) crc32((string) time()), 0, 1) || 0;
+			$messageIndex = substr((string) crc32((string) time()), 0, 1);
 		}
 
 		return $this->messages[$messageIndex];

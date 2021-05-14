@@ -22,6 +22,11 @@ final class Slack
 		$data = sprintf("payload=%s", json_encode(['channel' => $channel, 'username' => $username, 'text' => $text, 'icon_emoji' => $icon]));
 
 		$ch = curl_init($this->webHookUrl);
+
+		if ($ch === FALSE) {
+			return;
+		}
+
 		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
