@@ -21,7 +21,7 @@
 		}
 	},
 	"require": {
-		"php": "7.1.*",
+		"php": "7.4.*",
 		"ext-curl": "*",
 		"pd/holidays": "1.0.*",
 		"nette/di": "2.4.*"
@@ -29,6 +29,6 @@
 	"require-dev": {
 		"nette/tester": "^2.0",
 		"pd/coding-standard": "1.10.*",
-		"phpstan/phpstan": "0.9.*"
+		"phpstan/phpstan": "0.12.*"
 	}
 }

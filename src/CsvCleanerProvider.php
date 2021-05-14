@@ -60,13 +60,23 @@ final class CsvCleanerProvider implements ICleanerProvider
 	private function parseCleaners(): iterable
 	{
 		$data = file_get_contents($this->filePath);
+
+		if ($data === FALSE) {
+			return [];
+		}
+
 		$plans = preg_split('~[\r\n]+~', $data);
+
+		if ($plans === FALSE) {
+			return [];
+		}
+
 		array_shift($plans);
 
 		$cleaner = NULL;
 
 		foreach ($plans as $plan) {
-			list($cleanerCandidate, $slackId, $from, $to) = explode(",", $plan);
+			[$cleanerCandidate, $slackId, $from, $to] = explode(",", $plan);
 
 			try {
 				$cleaner = new Cleaner($cleanerCandidate, $slackId, $from, $to);

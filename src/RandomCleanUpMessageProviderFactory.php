@@ -16,6 +16,10 @@ final class RandomCleanUpMessageProviderFactory implements IMessageProviderFacto
 	private $fridayMessages;
 
 
+	/**
+	 * @param array<string> $messages
+	 * @param array<string> $fridayMessages
+	 */
 	public function __construct(array $messages, array $fridayMessages)
 	{
 		$this->messages = $messages;
