@@ -30,24 +30,14 @@ final class SpeechTest extends \Tester\TestCase
 
 			public function getNextCleaner(): ?string
 			{
-				\Tester\Assert::fail('Metoda není implementována');
+				return NULL;
 			}
 		};
 
-		$dateTimeProvider = new class implements \Pd\CafeBot\IDateTimeProvider
-		{
-
-			public function getDateTime(): \DateTimeImmutable
-			{
-				return new \DateTimeImmutable('2018-08-23');
-			}
-
-		};
-
-		$bot = new \Pd\CafeBot\Bot($messageProvider, $cleanerProvider, $dateTimeProvider);
+		$bot = new \Pd\CafeBot\Bot($messageProvider, $cleanerProvider);
 		$message = $bot->speech();
 
-		\Tester\Assert::equal('Vyčistit', $message);
+		\Tester\Assert::equal('Vyčistit A příště uklízí nějaká dobrá duše, domluvte se prosím.', $message);
 	}
 
 
@@ -73,24 +63,14 @@ final class SpeechTest extends \Tester\TestCase
 
 			public function getNextCleaner(): ?string
 			{
-				\Tester\Assert::fail('Metoda není implementována');
+				return NULL;
 			}
 		};
 
-		$dateTimeProvider = new class implements \Pd\CafeBot\IDateTimeProvider
-		{
-
-			public function getDateTime(): \DateTimeImmutable
-			{
-				return new \DateTimeImmutable('2018-08-23');
-			}
-
-		};
-
-		$bot = new \Pd\CafeBot\Bot($messageProvider, $cleanerProvider, $dateTimeProvider);
+		$bot = new \Pd\CafeBot\Bot($messageProvider, $cleanerProvider);
 		$message = $bot->speech();
 
-		\Tester\Assert::equal('Vyčistit uklizeč', $message);
+		\Tester\Assert::equal('Vyčistit uklizeč A příště uklízí nějaká dobrá duše, domluvte se prosím.', $message);
 	}
 
 
@@ -116,7 +96,7 @@ final class SpeechTest extends \Tester\TestCase
 
 			public function getNextCleaner(): ?string
 			{
-				\Tester\Assert::fail('Metoda není implementována');
+				return NULL;
 			}
 		};
 
@@ -133,11 +113,11 @@ final class SpeechTest extends \Tester\TestCase
 		$bot = new \Pd\CafeBot\Bot($messageProvider, $cleanerProvider, $dateTimeProvider);
 		$message = $bot->speech();
 
-		\Tester\Assert::equal('Vyčistit <@uklizeč>', $message);
+		\Tester\Assert::equal('Vyčistit <@uklizeč> A příště uklízí nějaká dobrá duše, domluvte se prosím.', $message);
 	}
 
 
-	public function testSpeechOnFriday(): void
+	public function testSpeechChangeCleaner(): void
 	{
 		$messageProvider = new class implements \Pd\CafeBot\IMessageProvider
 		{
@@ -163,20 +143,10 @@ final class SpeechTest extends \Tester\TestCase
 			}
 		};
 
-		$dateTimeProvider = new class implements \Pd\CafeBot\IDateTimeProvider
-		{
-
-			public function getDateTime(): \DateTimeImmutable
-			{
-				return new \DateTimeImmutable('2018-08-24');
-			}
-
-		};
-
-		$bot = new \Pd\CafeBot\Bot($messageProvider, $cleanerProvider, $dateTimeProvider);
+		$bot = new \Pd\CafeBot\Bot($messageProvider, $cleanerProvider);
 		$message = $bot->speech();
 
-		\Tester\Assert::equal('Vyčistit <@uklizeč>. A příště uklízí <@uklizeč2>', $message);
+		\Tester\Assert::equal('Vyčistit <@uklizeč>. A příště uklízí <@uklizeč2>.', $message);
 	}
 
 }

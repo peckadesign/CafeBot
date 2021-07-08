@@ -15,20 +15,14 @@ final class Bot
 	 */
 	private $cleanerProvider;
 
-	/**
-	 * @var IDateTimeProvider
-	 */
-	private $dateTimeProvider;
-
 
 	public function __construct(
 		IMessageProvider $messageProvider,
-		ICleanerProvider $cleanerProvider,
-		IDateTimeProvider $dateTimeProvider
-	) {
+		ICleanerProvider $cleanerProvider
+	)
+	{
 		$this->messageProvider = $messageProvider;
 		$this->cleanerProvider = $cleanerProvider;
-		$this->dateTimeProvider = $dateTimeProvider;
 	}
 
 
@@ -36,14 +30,29 @@ final class Bot
 	{
 		$message = $this->messageProvider->getMessage();
 
-		if (strpos($message, '%s') !== FALSE && ($cleaner = $this->cleanerProvider->getCleaner())) {
-			$cleaner = $this->createLinkFromCleaner($cleaner);
+		$cleaner = NULL;
+
+		if (strpos($message, '%s') !== FALSE) {
+			$cleaner = $this->cleanerProvider->getCleaner();
+			if ($cleaner !== NULL) {
+				$cleaner = $this->createLinkFromCleaner($cleaner);
+			} else {
+				$cleaner = 'dnešní čistič';
+			}
 
 			$message = str_replace("%s", $cleaner, $message);
 		}
 
-		if (((int) $this->dateTimeProvider->getDateTime()->format('N')) === 5 && ($nextCleaner = $this->cleanerProvider->getNextCleaner())) {
-			$message .= \sprintf(' A příště uklízí %s', $this->createLinkFromCleaner($nextCleaner));
+		$nextCleaner = $this->cleanerProvider->getNextCleaner();
+
+		if ($nextCleaner === NULL) {
+			$nextCleaner = 'nějaká dobrá duše, domluvte se prosím';
+		} else {
+			$nextCleaner = $this->createLinkFromCleaner($nextCleaner);
+		}
+
+		if ($cleaner !== $nextCleaner) {
+			$message .= \sprintf(' A příště uklízí %s.', $nextCleaner);
 		}
 
 		return $message;
