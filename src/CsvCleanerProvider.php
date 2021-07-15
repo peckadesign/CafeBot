@@ -15,13 +15,18 @@ final class CsvCleanerProvider implements ICleanerProvider
 	 */
 	private $dateTimeProvider;
 
+	private \Pd\Holidays\IHolidayFacade $holidayFacade;
+
 
 	public function __construct(
 		string $filePath,
-		IDateTimeProvider $dateTimeProvider
-	) {
+		IDateTimeProvider $dateTimeProvider,
+		\Pd\Holidays\IHolidayFacade $holidayFacade
+	)
+	{
 		$this->filePath = $filePath;
 		$this->dateTimeProvider = $dateTimeProvider;
+		$this->holidayFacade = $holidayFacade;
 	}
 
 
@@ -42,7 +47,18 @@ final class CsvCleanerProvider implements ICleanerProvider
 	public function getNextCleaner(): ?string
 	{
 		$today = $this->dateTimeProvider->getDateTime();
-		$today = $today->modify('next monday');
+
+		do {
+			$today = $today->modify('next day');
+			if (\in_array($today->format('N'), ['6', '7'], TRUE)) {
+				continue;
+			}
+			$holiday = $this->holidayFacade->getHoliday(\Pd\Holidays\Localizations\ICzech::COUNTRY_CODE_CZECH, $today);
+			if ($holiday !== NULL) {
+				continue;
+			}
+			break;
+		} while (TRUE);
 
 		foreach ($this->parseCleaners() as $cleaner) {
 			if ($cleaner->isAvailableInDay($today)) {

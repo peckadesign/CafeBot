@@ -18,7 +18,22 @@ final class GetCleanerTest extends \Tester\TestCase
 
 		};
 
-		$provider = new \Pd\CafeBot\CsvCleanerProvider(__DIR__ . '/data.csv', $dateTimeProvider);
+		$holidayFacade = new class implements \Pd\Holidays\IHolidayFacade {
+
+			public function getHoliday(string $countryCode, \DateTimeInterface $dateTime): ?\Pd\Holidays\IHoliday
+			{
+				\Tester\Assert::fail('Metoda nesmí být zavolána');
+			}
+
+
+			public function getHolidays(string $countryCode, int $year): \Pd\Holidays\IYear
+			{
+				\Tester\Assert::fail('Metoda nesmí být zavolána');
+			}
+
+		};
+
+		$provider = new \Pd\CafeBot\CsvCleanerProvider(__DIR__ . '/data.csv', $dateTimeProvider, $holidayFacade);
 		\Tester\Assert::null($provider->getCleaner());
 	}
 
@@ -34,7 +49,22 @@ final class GetCleanerTest extends \Tester\TestCase
 
 		};
 
-		$provider = new \Pd\CafeBot\CsvCleanerProvider(__DIR__ . '/data.csv', $dateTimeProvider);
+		$holidayFacade = new class implements \Pd\Holidays\IHolidayFacade {
+
+			public function getHoliday(string $countryCode, \DateTimeInterface $dateTime): ?\Pd\Holidays\IHoliday
+			{
+				\Tester\Assert::fail('Metoda nesmí být zavolána');
+			}
+
+
+			public function getHolidays(string $countryCode, int $year): \Pd\Holidays\IYear
+			{
+				\Tester\Assert::fail('Metoda nesmí být zavolána');
+			}
+
+		};
+
+		$provider = new \Pd\CafeBot\CsvCleanerProvider(__DIR__ . '/data.csv', $dateTimeProvider, $holidayFacade);
 		\Tester\Assert::equal('Čistič B', $provider->getCleaner());
 	}
 
@@ -50,7 +80,22 @@ final class GetCleanerTest extends \Tester\TestCase
 
 		};
 
-		$provider = new \Pd\CafeBot\CsvCleanerProvider(__DIR__ . '/data.csv', $dateTimeProvider);
+		$holidayFacade = new class implements \Pd\Holidays\IHolidayFacade {
+
+			public function getHoliday(string $countryCode, \DateTimeInterface $dateTime): ?\Pd\Holidays\IHoliday
+			{
+				\Tester\Assert::fail('Metoda nesmí být zavolána');
+			}
+
+
+			public function getHolidays(string $countryCode, int $year): \Pd\Holidays\IYear
+			{
+				\Tester\Assert::fail('Metoda nesmí být zavolána');
+			}
+
+		};
+
+		$provider = new \Pd\CafeBot\CsvCleanerProvider(__DIR__ . '/data.csv', $dateTimeProvider, $holidayFacade);
 		\Tester\Assert::equal('@CCCC', $provider->getCleaner());
 	}
 
