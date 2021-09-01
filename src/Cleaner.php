@@ -28,6 +28,12 @@ final class Cleaner
 
 	public function __construct(string $name, ?string $slackId, ?string $from, ?string $to)
 	{
+		$name = \trim($name);
+
+		if ($name === '') {
+			throw new \RuntimeException('Uživatel nemá zadané jméno');
+		}
+		
 		$this->name = $name;
 		$this->slackId = $slackId;
 
