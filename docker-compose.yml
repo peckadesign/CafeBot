@@ -1,0 +1,8 @@
+services:
+  composer:
+    image: peckadesign/php:7.4-dev
+    volumes:
+      - ./:/var/www/html
+    command: composer install
+    env_file:
+      - .env

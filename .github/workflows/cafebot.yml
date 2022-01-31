@@ -1,0 +1,22 @@
+name: CafeBot
+
+on:
+  schedule:
+    - cron: '0 16 * * 1-5'
+
+jobs:
+  clean:
+    name: Cleaner Call
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: 7.4
+
+      - run: composer install
+
+      - run: php bin/index.php
+        env:
+          CAFEBOT_CLEANERS: ${{ secrets.CAFEBOT_CLEANERS }}
+          CAFEBOT_WEBHOOK: ${{ secrets.CAFEBOT_WEBHOOK }}
