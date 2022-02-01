@@ -5,7 +5,6 @@ include __DIR__ . '/../vendor/autoload.php';
 $containerLoader = new \Nette\DI\ContainerLoader(__DIR__ . '/../temp');
 $containerClass = $containerLoader->load(function (\Nette\DI\Compiler $container) {
 	$container->loadConfig(__DIR__ . '/../config/config.neon');
-	$container->loadConfig(__DIR__ . '/../config/config.local.neon');
 	$container->addExtension('holidays', new \Pd\Holidays\DI\Extension());
 });
 
