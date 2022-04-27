@@ -1,0 +1,22 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: cafebot
+  namespace: cafebot
+spec:
+  schedule: "00 16 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: cafebot
+              image: registry.peckadesign.com/peckadesign/cafebot:latest
+              command:
+                - php
+                - bin/index.php
+              envFrom:
+              - secretRef:
+                  name: envdata
+          restartPolicy: OnFailure
+          
